@@ -1,9 +1,42 @@
-TITLE: Basic React-PDF Implementation with Page Navigation in TypeScript/React
-DESCRIPTION: This example demonstrates basic usage of React-PDF components with React hooks to track the number of pages and current page. It renders a PDF document and provides simple navigation information.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_4
+## Basic React-PDF Implementation with Page Navigation in TypeScript/React
+ This example demonstrates basic usage of React-PDF components with React hooks to track the number of pages and current page. It renders a PDF document and provides simple navigation information.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_4
 
-LANGUAGE: tsx
-CODE:
+ tsx
+
+``
+import { useState } from 'react';
+import { Document, Page } from 'react-pdf';
+
+function MyApp() {
+  const [numPages, setNumPages] = useState<number>();
+  const [pageNumber, setPageNumber] = useState<number>(1);
+
+  function onDocumentLoadSuccess({  {   void {
+    setNumPages(numPages);
+  }
+
+  return (
+    <div>
+      <Document file="somefile.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <p>
+        Page {pageNumber} of {numPages}
+      </p>
+    </div>
+  );
+}
+``
+
+----------------------------------------
+
+## Basic Usage of React-PDF Components
+ Example of using React-PDF components to display a PDF document with page navigation.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_2
+
+ typescript
+
 ```
 import { useState } from 'react';
 import { Document, Page } from 'react-pdf';
@@ -12,7 +45,7 @@ function MyApp() {
   const [numPages, setNumPages] = useState<number>();
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
+  function onDocumentLoadSuccess({  {   void {
     setNumPages(numPages);
   }
 
@@ -31,57 +64,12 @@ function MyApp() {
 
 ----------------------------------------
 
-TITLE: Basic Usage of React-PDF Components
-DESCRIPTION: Example of using React-PDF components to display a PDF document with page navigation.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_2
+## React PDF Page Component Basic Usage
+ Shows the basic implementation of the Page component within a Document component. The Page component can also work standalone with a pdf prop obtained from Document's onLoadSuccess callback, though some advanced features may be limited.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_39
 
-LANGUAGE: typescript
-CODE:
-```
-import { useState } from 'react';
-import { Document, Page } from 'react-pdf';
+ jsx
 
-function MyApp() {
-  const [numPages, setNumPages] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(1);
-
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
-  }
-
-  return (
-    <div>
-      <Document file="somefile.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} />
-      </Document>
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
-    </div>
-  );
-}
-```
-
-----------------------------------------
-
-TITLE: Handling Thumbnail Item Click in React-PDF
-DESCRIPTION: Example function for handling click events on thumbnail items in React-PDF. The function receives an object containing destination information, page index, and page number, which can be used to navigate to the requested page.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_36
-
-LANGUAGE: JavaScript
-CODE:
-```
-({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
-```
-
-----------------------------------------
-
-TITLE: React PDF Page Component Basic Usage
-DESCRIPTION: Shows the basic implementation of the Page component within a Document component. The Page component can also work standalone with a pdf prop obtained from Document's onLoadSuccess callback, though some advanced features may be limited.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_39
-
-LANGUAGE: jsx
-CODE:
 ```
 <Document>
   <Page />
@@ -90,90 +78,66 @@ CODE:
 
 ----------------------------------------
 
-TITLE: React Thumbnail Click Handler Example
-DESCRIPTION: Example of an onItemClick handler function for the Thumbnail component that shows an alert when a thumbnail is clicked. The function receives an object with dest, pageIndex, and pageNumber properties.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_52
+## Using React PDF Outline Component Event Handler
+ Example of implementing the onItemClick callback for the Outline component to handle navigation when a user clicks on an outline item. The callback receives destination information including page index and number.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_47
 
-LANGUAGE: javascript
-CODE:
+ jsx
+
 ```
 ({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
 ```
 
 ----------------------------------------
 
-TITLE: Using React PDF Outline Component Event Handler
-DESCRIPTION: Example of implementing the onItemClick callback for the Outline component to handle navigation when a user clicks on an outline item. The callback receives destination information including page index and number.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_47
+## React Thumbnail Click Handler Example
+ Example of an onItemClick handler function for the Thumbnail component that shows an alert when a thumbnail is clicked. The function receives an object with dest, pageIndex, and pageNumber properties.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_52
 
-LANGUAGE: jsx
-CODE:
+ javascript
+
 ```
 ({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
 ```
 
 ----------------------------------------
 
-TITLE: Page Loading Event Handlers
-DESCRIPTION: Callback functions for handling page loading success and failure events.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_30
+## React Outline Component Event Handler
+ Example of an event handler for when an outline item is clicked in React PDF component. The handler receives page and destination information.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_32
 
-LANGUAGE: javascript
-CODE:
-```
-(error) => alert('Error while loading page! ' + error.message)
-```
+ javascript
 
-LANGUAGE: javascript
-CODE:
-```
-(page) => alert('Now displaying a page number ' + page.pageNumber + '!')
-```
-
-----------------------------------------
-
-TITLE: Handling Item Click in React-PDF
-DESCRIPTION: A callback function for when an outline item or thumbnail is clicked in a PDF viewer. It receives an object with destination, page index, and page number information.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_30
-
-LANGUAGE: javascript
-CODE:
 ```
 ({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
 ```
 
 ----------------------------------------
 
-TITLE: React Outline Component Event Handler
-DESCRIPTION: Example of an event handler for when an outline item is clicked in React PDF component. The handler receives page and destination information.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_32
+## Using className prop with String or Array in React-PDF
+ Examples of how to set the className prop in the Document component using either a string or an array of strings.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_22
 
-LANGUAGE: javascript
-CODE:
+ jsx
+
 ```
-({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
+"custom-class-name-1 custom-class-name-2"
 ```
 
-----------------------------------------
+ jsx
 
-TITLE: Handling Item Click Events in React-PDF
-DESCRIPTION: Example of an onItemClick callback function for React-PDF. This function is called when an outline item or thumbnail is clicked, allowing custom behavior such as navigation.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_16
-
-LANGUAGE: JavaScript
-CODE:
 ```
-({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
+["custom-class-name-1", "custom-class-name-2"]
 ```
 
 ----------------------------------------
 
-TITLE: React Ref Creation Examples
-DESCRIPTION: Examples showing different ways to create and use refs with the Page component's inputRef and canvasRef props
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_40
+## React Ref Creation Examples
+ Examples showing different ways to create and use refs with the Page component's inputRef and canvasRef props
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_40
 
-LANGUAGE: jsx
-CODE:
+ jsx
+
 ```
 (ref) => { this.myCanvas = ref; }
 
@@ -186,424 +150,140 @@ inputRef={ref}
 
 ----------------------------------------
 
-TITLE: Rendering Event Handlers
-DESCRIPTION: Callback functions for handling various rendering events including annotation layer, text layer, and general page rendering.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_31
+## React Success Handler Implementation
+ Example of a success handler function for when the outline is successfully retrieved in React PDF component.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_34
 
-LANGUAGE: javascript
-CODE:
-```
-() => alert('Rendered the annotation layer!')
-```
+ javascript
 
-LANGUAGE: javascript
-CODE:
-```
-() => alert('Rendered the page!')
-```
-
-LANGUAGE: javascript
-CODE:
-```
-() => alert('Rendered the text layer!')
-```
-
-----------------------------------------
-
-TITLE: React PDF Page Rotation Usage
-DESCRIPTION: Demonstrates the rotation property usage in React PDF. The rotate prop accepts degrees (90, 180, 270) to control document orientation. 90 rotates right, 180 flips upside down, and 270 rotates left. This rotation applies globally, overriding individual page rotation settings.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_38
-
-LANGUAGE: jsx
-CODE:
-```
-<Document rotate={90}>
-  <Page />
-</Document>
-```
-
-----------------------------------------
-
-TITLE: Handling Page Loading and Rendering Events in React-PDF
-DESCRIPTION: Example callbacks for page loading and rendering events. These functions handle successful page loading, rendering completion, or errors during these processes.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_46
-
-LANGUAGE: JavaScript
-CODE:
-```
-(error) => alert('Error while loading page! ' + error.message)
-```
-
-LANGUAGE: JavaScript
-CODE:
-```
-(page) => alert('Now displaying a page number ' + page.pageNumber + '!')
-```
-
-LANGUAGE: JavaScript
-CODE:
-```
-(error) => alert('Error while loading page! ' + error.message)
-```
-
-LANGUAGE: JavaScript
-CODE:
-```
-() => alert('Rendered the page!')
-```
-
-----------------------------------------
-
-TITLE: Handling Successful Source Retrieval in React-PDF
-DESCRIPTION: A callback function executed when document source is successfully retrieved from the file prop. It takes no parameters.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_36
-
-LANGUAGE: javascript
-CODE:
-```
-() => alert('Document source retrieved!')
-```
-
-----------------------------------------
-
-TITLE: Handling Successful PDF Load in React-PDF
-DESCRIPTION: A callback function executed when a PDF document is successfully loaded. It receives the loaded PDF object which contains document information.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_33
-
-LANGUAGE: javascript
-CODE:
-```
-(pdf) => alert('Loaded a file with ' + pdf.numPages + ' pages!')
-```
-
-----------------------------------------
-
-TITLE: Importing CSS for PDF Text Layer Support
-DESCRIPTION: This import statement adds the necessary CSS styles to properly display the text layer in PDFs rendered by React-PDF. This is required for text selection functionality.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_6
-
-LANGUAGE: typescript
-CODE:
-```
-import 'react-pdf/dist/Page/TextLayer.css';
-```
-
-----------------------------------------
-
-TITLE: Tracking PDF Loading Progress in React-PDF
-DESCRIPTION: A callback function that reports the loading progress of a PDF document. It receives an object with loaded and total bytes, allowing calculation of percentage complete.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_32
-
-LANGUAGE: javascript
-CODE:
-```
-({ loaded, total }) => alert('Loading a document: ' + (loaded / total) * 100 + '%')
-```
-
-----------------------------------------
-
-TITLE: Handling Text Layer Events in React-PDF
-DESCRIPTION: Example callback functions for text layer loading and rendering events. These functions handle text layer items being successfully loaded, rendering completion, or errors during these processes.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_45
-
-LANGUAGE: JavaScript
-CODE:
-```
-(error) => alert('Error while loading text layer items! ' + error.message)
-```
-
-LANGUAGE: JavaScript
-CODE:
-```
-({ items, styles }) => alert('Now displaying ' + items.length + ' text layer items!')
-```
-
-LANGUAGE: JavaScript
-CODE:
-```
-(error) => alert('Error while rendering text layer! ' + error.message)
-```
-
-LANGUAGE: JavaScript
-CODE:
-```
-() => alert('Rendered the text layer!')
-```
-
-----------------------------------------
-
-TITLE: Structure Tree Handler Functions
-DESCRIPTION: Callback functions for handling structure tree loading success and failure events.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_28
-
-LANGUAGE: javascript
-CODE:
-```
-(error) => alert('Error while loading structure tree! ' + error.message)
-```
-
-LANGUAGE: javascript
-CODE:
-```
-(structTree) => alert(JSON.stringify(structTree))
-```
-
-----------------------------------------
-
-TITLE: React Success Handler Implementation
-DESCRIPTION: Example of a success handler function for when the outline is successfully retrieved in React PDF component.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_34
-
-LANGUAGE: javascript
-CODE:
 ```
 (outline) => alert('The outline has been successfully retrieved.')
 ```
 
 ----------------------------------------
 
-TITLE: Configuring PDF.js Options in React-PDF
-DESCRIPTION: An object for passing additional parameters to PDF.js, such as cMapUrl for character maps, custom HTTP headers, and authentication settings.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_37
+## Configuring React-PDF with CDN-hosted cMaps
+ Alternative configuration for the Document component that uses cMaps hosted on an external CDN instead of local files.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_16
 
-LANGUAGE: javascript
-CODE:
-```
-{ cMapUrl: '/cmaps/' }
-```
+ typescript
 
-----------------------------------------
-
-TITLE: Text Layer Event Handlers
-DESCRIPTION: Callback functions for handling text layer loading success and failure events.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_29
-
-LANGUAGE: javascript
-CODE:
 ```
-(error) => alert('Error while loading text layer items! ' + error.message)
-```
+// Outside of React component
+import { pdfjs } from 'react-pdf';
 
-LANGUAGE: javascript
-CODE:
-```
-({ items, styles }) => alert('Now displaying ' + items.length + ' text layer items!')
+const options = {
+   `//unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+};
+
+// Inside of React component
+<Document options={options} />;
 ```
 
 ----------------------------------------
 
-TITLE: React Ref Creation Examples
-DESCRIPTION: Examples of different ways to create and use refs with the Document component
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_14
+## Defining Custom NoData Content in React-PDF
+ Demonstrates different ways to specify custom content for the noData prop in React-PDF. This prop determines what the component displays when no PDF file is specified.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_15
 
-LANGUAGE: javascript
-CODE:
-```
-(ref) => { this.myDocument = ref; }
-```
+ JavaScript
 
-LANGUAGE: javascript
-CODE:
 ```
-this.ref = createRef();
-....
-inputRef={this.ref}
+"Please select a file."
 ```
 
-LANGUAGE: javascript
-CODE:
+ JSX
+
 ```
-const ref = useRef();
-....
-inputRef={ref}
+<p>Please select a file.</p>
+```
+
+ JavaScript
+
+```
+this.renderNoData
 ```
 
 ----------------------------------------
 
-TITLE: Handling Success Events in React PDF Outline Component
-DESCRIPTION: Example of implementing the onLoadSuccess callback for the Outline component to handle successful retrieval of the document outline. The callback receives the outline object.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_49
+## React Component Import Example
+ Example of importing a PDF file in a React component
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_13
 
-LANGUAGE: jsx
-CODE:
-```
-(outline) => alert('The outline has been successfully retrieved.')
-```
+ javascript
 
-----------------------------------------
-
-TITLE: React Error Handler Implementation
-DESCRIPTION: Example of an error handler function for handling outline retrieval errors in React PDF component.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_33
-
-LANGUAGE: javascript
-CODE:
-```
-(error) => alert('Error while retrieving the outline! ' + error.message)
-```
-
-----------------------------------------
-
-TITLE: Using inputRef with React-PDF Document Component
-DESCRIPTION: Examples of different ways to pass references to the Document component using the inputRef prop with function, createRef, or useRef.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_28
-
-LANGUAGE: jsx
-CODE:
-```
-(ref) => { this.myDocument = ref; }
-```
-
-LANGUAGE: jsx
-CODE:
-```
-this.ref = createRef();
-...
-inputRef={this.ref}
-```
-
-LANGUAGE: jsx
-CODE:
-```
-const ref = useRef();
-...
-inputRef={ref}
-```
-
-----------------------------------------
-
-TITLE: Handling Successful Source Retrieval in React-PDF
-DESCRIPTION: Example of an onSourceSuccess callback function for React-PDF. This function is called when the document source is successfully retrieved from the file prop.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_22
-
-LANGUAGE: JavaScript
-CODE:
-```
-() => alert('Document source retrieved!')
-```
-
-----------------------------------------
-
-TITLE: Handling Source Error in React-PDF
-DESCRIPTION: A callback function triggered when an error occurs while retrieving the document source from the file prop. It receives the error object.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_35
-
-LANGUAGE: javascript
-CODE:
-```
-(error) => alert('Error while retrieving document source! ' + error.message)
-```
-
-----------------------------------------
-
-TITLE: Handling Successful Document Load in React-PDF
-DESCRIPTION: Example of an onLoadSuccess callback function for React-PDF. This function is called when a document is successfully loaded, providing access to the loaded PDF object.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_19
-
-LANGUAGE: JavaScript
-CODE:
-```
-(pdf) => alert('Loaded a file with ' + pdf.numPages + ' pages!')
-```
-
-----------------------------------------
-
-TITLE: Using className prop with String or Array in React-PDF
-DESCRIPTION: Examples of how to set the className prop in the Document component using either a string or an array of strings.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_22
-
-LANGUAGE: jsx
-CODE:
-```
-"custom-class-name-1 custom-class-name-2"
-```
-
-LANGUAGE: jsx
-CODE:
-```
-["custom-class-name-1", "custom-class-name-2"]
-```
-
-----------------------------------------
-
-TITLE: Tracking Load Progress in React-PDF
-DESCRIPTION: Example of an onLoadProgress callback function for React-PDF. This function is called multiple times as the document loads, allowing progress tracking.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_18
-
-LANGUAGE: JavaScript
-CODE:
-```
-({ loaded, total }) => alert('Loading a document: ' + (loaded / total) * 100 + '%')
-```
-
-----------------------------------------
-
-TITLE: Handling PDF Load Error in React-PDF
-DESCRIPTION: A callback function triggered when an error occurs while loading a PDF document. It receives the error object as a parameter.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_31
-
-LANGUAGE: javascript
-CODE:
-```
-(error) => alert('Error while loading document! ' + error.message)
-```
-
-----------------------------------------
-
-TITLE: Configuring PDF.js Options in React-PDF
-DESCRIPTION: Example of setting additional PDF.js options in React-PDF. This includes parameters like cMapUrl for character maps and custom HTTP headers for authorization.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_23
-
-LANGUAGE: JavaScript
-CODE:
-```
-{ cMapUrl: '/cmaps/' }
-```
-
-----------------------------------------
-
-TITLE: Specifying PDF File Sources in React-PDF
-DESCRIPTION: Examples of different ways to provide PDF files to the Document component using the file prop, including URL, imported file, or parameter object.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_26
-
-LANGUAGE: jsx
-CODE:
-```
-"https://example.com/sample.pdf"
-```
-
-LANGUAGE: javascript
-CODE:
 ```
 import importedPdf from '../static/sample.pdf'
 ```
 
-LANGUAGE: jsx
-CODE:
+----------------------------------------
+
+## React Ref Creation Examples
+ Examples of different ways to create and use refs with the Document component
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_14
+
+ javascript
+
 ```
-{ url: 'https://example.com/sample.pdf' }
+(ref) => { this.myDocument = ref; }
+```
+
+ javascript
+
+```
+this.ref = createRef();
+....
+inputRef={this.ref}
+```
+
+ javascript
+
+```
+const ref = useRef();
+....
+inputRef={ref}
 ```
 
 ----------------------------------------
 
-TITLE: PDF Annotation Loading Callbacks
-DESCRIPTION: Event handler examples for successful and failed annotation loading operations.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_27
+## Configuring React-PDF Document Component with CDN cMaps
+ Alternative approach to using cMaps from an external CDN instead of bundling them with the application. This utilizes the unpkg CDN to serve cMaps files from the pdfjs-dist package.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_7
 
-LANGUAGE: javascript
-CODE:
+ tsx
+
 ```
-(annotations) => alert('Now displaying ' + annotations.length + ' annotations!')
+// Outside of React component
+import { pdfjs } from 'react-pdf';
+
+const options = {
+   `//unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+};
+
+// Inside of React component
+<Document options={options} />;
 ```
 
 ----------------------------------------
 
-TITLE: Ref Creation Examples in React
-DESCRIPTION: Multiple approaches to create and use refs with React-PDF components using createRef and useRef hooks.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_26
+## Handling Thumbnail Item Click in React-PDF
+ Example function for handling click events on thumbnail items in React-PDF. The function receives an object containing destination information, page index, and page number, which can be used to navigate to the requested page.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_36
 
-LANGUAGE: JSX
-CODE:
+ JavaScript
+
+```
+({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
+```
+
+----------------------------------------
+
+## Ref Creation Examples in React
+ Multiple approaches to create and use refs with React-PDF components using createRef and useRef hooks.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_26
+
+ JSX
+
 ```
 // Function ref
 (ref) => { this.myCanvas = ref; }
@@ -621,118 +301,320 @@ inputRef={ref}
 
 ----------------------------------------
 
-TITLE: Custom Text Renderer Function
-DESCRIPTION: Example of a custom text renderer function that replaces instances of 'ipsum' with marked text
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_41
+## React Error Handler Implementation
+ Example of an error handler function for handling outline retrieval errors in React PDF component.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_33
 
-LANGUAGE: javascript
-CODE:
+ javascript
+
 ```
-({ str, itemIndex }) => str.replace(/ipsum/g, value => `<mark>${value}</mark>`)
-```
-
-----------------------------------------
-
-TITLE: Configuring Parcel 2 for PDF.js Worker
-DESCRIPTION: This modification shows how to adjust the PDF.js worker URL specifically for Parcel 2 bundler by using the npm: protocol in the URL.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_13
-
-LANGUAGE: diff
-CODE:
-```
- pdfjs.GlobalWorkerOptions.workerSrc = new URL(
--  'pdfjs-dist/build/pdf.worker.min.mjs',
-+  'npm:pdfjs-dist/build/pdf.worker.min.mjs',
-   import.meta.url,
- ).toString();
+(error) => alert('Error while retrieving the outline! ' + error.message)
 ```
 
 ----------------------------------------
 
-TITLE: Setting External Link Target in React-PDF
-DESCRIPTION: Examples of possible values for the externalLinkTarget prop to control where links in PDF annotations will open.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_25
+## Using inputRef with React-PDF Document Component
+ Examples of different ways to pass references to the Document component using the inputRef prop with function, createRef, or useRef.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_28
 
-LANGUAGE: jsx
-CODE:
-```
-"_self"
-```
+ jsx
 
-LANGUAGE: jsx
-CODE:
 ```
-"_blank"
+(ref) => { this.myDocument = ref; }
 ```
 
-LANGUAGE: jsx
-CODE:
+ jsx
+
 ```
-"_parent"
+this.ref = createRef();
+...
+inputRef={this.ref}
 ```
 
-LANGUAGE: jsx
-CODE:
+ jsx
+
 ```
-"_top"
+const ref = useRef();
+...
+inputRef={ref}
 ```
 
 ----------------------------------------
 
-TITLE: Handling Source Retrieval Errors in React-PDF
-DESCRIPTION: Example of an onSourceError callback function for React-PDF. This function is called when an error occurs while retrieving the document source from the file prop.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_21
+## Configuring React-PDF with Local cMaps
+ Configuration for the Document component with options to use locally hosted cMaps. Defines options outside the React component to avoid unnecessary re-renders.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_15
 
-LANGUAGE: JavaScript
-CODE:
-```
-(error) => alert('Error while retrieving document source! ' + error.message)
-```
+ typescript
 
-----------------------------------------
+```
+// Outside of React component
+const options = {
+   '/cmaps/',
+};
 
-TITLE: Defining Custom NoData Content in React-PDF
-DESCRIPTION: Demonstrates different ways to specify custom content for the noData prop in React-PDF. This prop determines what the component displays when no PDF file is specified.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_15
-
-LANGUAGE: JavaScript
-CODE:
-```
-"Please select a file."
-```
-
-LANGUAGE: JSX
-CODE:
-```
-<p>Please select a file.</p>
-```
-
-LANGUAGE: JavaScript
-CODE:
-```
-this.renderNoData
+// Inside of React component
+<Document options={options} />;
 ```
 
 ----------------------------------------
 
-TITLE: Error Handler Function
-DESCRIPTION: Example of an error handler function for annotation loading errors
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_42
+## Rendering Event Handlers
+ Callback functions for handling various rendering events including annotation layer, text layer, and general page rendering.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_31
 
-LANGUAGE: javascript
-CODE:
+ javascript
+
 ```
-(error) => alert('Error while loading annotations! ' + error.message)
+() => alert('Rendered the annotation layer!')
+```
+
+ javascript
+
+```
+() => alert('Rendered the page!')
+```
+
+ javascript
+
+```
+() => alert('Rendered the text layer!')
 ```
 
 ----------------------------------------
 
-TITLE: React Thumbnail Class Name Examples
-DESCRIPTION: Examples showing how to pass class names to the Thumbnail component either as a space-separated string or as an array of strings.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_53
+## Using References with React PDF Components
+ Examples of three different ways to use refs with React PDF  using a callback function, using createRef, and using the useRef hook.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_51
 
-LANGUAGE: javascript
-CODE:
+ jsx
+
+```
+(ref) => { this.myOutline = ref; }
+```
+
+ jsx
+
+```
+this.ref = createRef();
+...
+inputRef={this.ref}
+```
+
+ jsx
+
+```
+const ref = useRef();
+...
+inputRef={ref}
+```
+
+----------------------------------------
+
+## Handling Errors in React-PDF Document Component
+ Examples of different ways to handle and display errors using the error prop, including string, React element, or function approach.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_23
+
+ jsx
+
+```
+"An error occurred!"
+```
+
+ jsx
+
+```
+<p>An error occurred!</p>
+```
+
+ jsx
+
+```
+this.renderError
+```
+
+----------------------------------------
+
+## Configuring React-PDF Document Component with Local cMaps
+ Example of setting up the Document component with options to use local cMaps that have been copied to the build output. This ensures proper rendering of PDFs with various character encodings.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_6
+
+ typescript
+
+```
+// Outside of React component
+const options = {
+   '/cmaps/',
+};
+
+// Inside of React component
+<Document options={options} />;
+```
+
+----------------------------------------
+
+## Handling Success Events in React PDF Outline Component
+ Example of implementing the onLoadSuccess callback for the Outline component to handle successful retrieval of the document outline. The callback receives the outline object.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_49
+
+ jsx
+
+```
+(outline) => alert('The outline has been successfully retrieved.')
+```
+
+----------------------------------------
+
+## Configuring React-PDF with CDN-hosted Standard Fonts
+ Alternative configuration for the Document component that uses standard fonts hosted on an external CDN instead of local files.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_21
+
+ typescript
+
+```
+// Outside of React component
+import { pdfjs } from 'react-pdf';
+
+const options = {
+   `//unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
+};
+
+// Inside of React component
+<Document options={options} />;
+```
+
+----------------------------------------
+
+## Handling Item Click Events in React-PDF
+ Example of an onItemClick callback function for React-PDF. This function is called when an outline item or thumbnail is clicked, allowing custom behavior such as navigation.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_16
+
+ JavaScript
+
+```
+({ dest, pageIndex, pageNumber }) => alert('Clicked an item from page ' + pageNumber + '!')
+```
+
+----------------------------------------
+
+## Configuring PDF.js Worker in React-PDF
+ Different methods to configure the PDF.js worker, including importing the worker, using external CDN, and supporting legacy browsers.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_1
+
+ typescript
+
+```
+import { pdfjs } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
+```
+
+ typescript
+
+```
+import { pdfjs } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+```
+
+ typescript
+
+```
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/legacy/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
+```
+
+----------------------------------------
+
+## Configuring PDF.js Options in React-PDF
+ Example of setting additional PDF.js options in React-PDF. This includes parameters like cMapUrl for character maps and custom HTTP headers for authorization.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_23
+
+ JavaScript
+
+```
+{  '/cmaps/' }
+```
+
+----------------------------------------
+
+## Configuring React-PDF with Local Standard Fonts
+ Configuration for the Document component with options to use locally hosted standard fonts. Defines options outside the React component to avoid unnecessary re-renders.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_20
+
+ typescript
+
+```
+// Outside of React component
+const options = {
+   '/standard_fonts/',
+};
+
+// Inside of React component
+<Document options={options} />;
+```
+
+----------------------------------------
+
+## Specifying PDF File Sources in React-PDF
+ Examples of different ways to provide PDF files to the Document component using the file prop, including URL, imported file, or parameter object.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_26
+
+ jsx
+
+```
+"//example.com/sample.pdf"
+```
+
+ javascript
+
+```
+import importedPdf from '../static/sample.pdf'
+```
+
+ jsx
+
+```
+{  '//example.com/sample.pdf' }
+```
+
+----------------------------------------
+
+## Configuring PDF.js Options in React-PDF
+ An object for passing additional parameters to PDF.js, such as cMapUrl for character maps, custom HTTP headers, and authentication settings.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_37
+
+ javascript
+
+```
+{  '/cmaps/' }
+```
+
+----------------------------------------
+
+## Handling Successful Source Retrieval in React-PDF
+ A callback function executed when document source is successfully retrieved from the file prop. It takes no parameters.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_36
+
+ javascript
+
+```
+() => alert('Document source retrieved!')
+```
+
+----------------------------------------
+
+## React Thumbnail Class Name Examples
+ Examples showing how to pass class names to the Thumbnail component either as a space-separated string or as an array of strings.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_53
+
+ javascript
+
 ```
 "custom-class-name-1 custom-class-name-2"
 ["custom-class-name-1", "custom-class-name-2"]
@@ -740,30 +622,166 @@ CODE:
 
 ----------------------------------------
 
-TITLE: Importing CSS for PDF Annotation Support
-DESCRIPTION: This import statement adds the necessary CSS styles to properly display annotations in PDFs rendered by React-PDF. This is required for features like links to work correctly.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_5
+## Configuring React-PDF Document Component with CDN Standard Fonts
+ Alternative approach to using standard fonts from an external CDN instead of bundling them with the application. This utilizes the unpkg CDN to serve standard font files from the pdfjs-dist package.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_12
 
-LANGUAGE: typescript
-CODE:
-```
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-```
+ tsx
 
-----------------------------------------
-
-TITLE: Configuring React-PDF with Local cMaps
-DESCRIPTION: Configuration for the Document component with options to use locally hosted cMaps. Defines options outside the React component to avoid unnecessary re-renders.
-SOURCE: https://github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_15
-
-LANGUAGE: typescript
-CODE:
 ```
 // Outside of React component
+import { pdfjs } from 'react-pdf';
+
 const options = {
-  cMapUrl: '/cmaps/',
+   `//unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
 };
 
 // Inside of React component
 <Document options={options} />;
+```
+
+----------------------------------------
+
+## Configuring React-PDF Document Component with Local Standard Fonts
+ Example of setting up the Document component with options to use local standard fonts that have been copied to the build output. This ensures proper rendering of PDFs that use standard fonts.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_11
+
+ tsx
+
+```
+// Outside of React component
+const options = {
+   '/standard_fonts/',
+};
+
+// Inside of React component
+<Document options={options} />;
+```
+
+----------------------------------------
+
+## Importing CSS for PDF Text Layer Support
+ This import statement adds the necessary CSS styles to properly display the text layer in PDFs rendered by React-PDF. This is required for text selection functionality.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_6
+
+ typescript
+
+```
+import 'react-pdf/dist/Page/TextLayer.css';
+```
+
+----------------------------------------
+
+## Page Loading Event Handlers
+ Callback functions for handling page loading success and failure events.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_30
+
+ javascript
+
+```
+(error) => alert('Error while loading page! ' + error.message)
+```
+
+ javascript
+
+```
+(page) => alert('Now displaying a page number ' + page.pageNumber + '!')
+```
+
+----------------------------------------
+
+## Handling Error Events in React PDF Outline Component
+ Example of implementing the onLoadError callback for the Outline component to handle errors that occur while retrieving the document outline. The callback receives the error object.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_48
+
+ jsx
+
+```
+(error) => alert('Error while retrieving the outline! ' + error.message)
+```
+
+----------------------------------------
+
+## Setting Class Names for React PDF Components
+ Examples showing two ways to set custom class names for React PDF components - using a string with space-separated class names or an array of class name strings.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_50
+
+ jsx
+
+```
+"custom-class-name-1 custom-class-name-2"
+```
+
+ jsx
+
+```
+["custom-class-name-1", "custom-class-name-2"]
+```
+
+----------------------------------------
+
+## Configuring Next.js for React-PDF Without Turbopack
+ This Next.js configuration resolves canvas dependency issues when using React-PDF without Turbopack by setting the canvas alias to false in webpack config.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_10
+
+ diff
+
+```
+module.exports = {
++  (config) => {
++   config.resolve.alias.canvas = false;
+
++   return config;
++ },
+}
+```
+
+----------------------------------------
+
+## Text Layer Event Handlers
+ Callback functions for handling text layer loading success and failure events.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_29
+
+ javascript
+
+```
+(error) => alert('Error while loading text layer items! ' + error.message)
+```
+
+ javascript
+
+```
+({ items, styles }) => alert('Now displaying ' + items.length + ' text layer items!')
+```
+
+----------------------------------------
+
+## Configuring Next.js Prior to v15 for React-PDF
+ This configuration disables SWC minification in Next.js versions prior to v15.0.0-canary.53, which may be necessary for React-PDF to work correctly.
+ //github.com/wojtekmaj/react-pdf/blob/main/packages/react-pdf/README.md#2025-04-11_snippet_12
+
+ diff
+
+```
+module.exports = {
++  false,
+}
+```
+
+----------------------------------------
+
+## React Ref Implementation
+ Examples of different ways to implement refs with the Outline component in React PDF, including function refs and createRef/useRef approaches.
+ //github.com/wojtekmaj/react-pdf/blob/main/README.md#2025-04-11_snippet_35
+
+ javascript
+
+```
+(ref) => { this.myOutline = ref; }
+
+this.ref = createRef();
+...inputRef={this.ref}
+
+const ref = useRef();
+...inputRef={ref}
 ```
